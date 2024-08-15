@@ -1,6 +1,6 @@
 package main
 
-import "github.com/yourusername/mycobraapp/cmd"
+import "github.com/shahnewaz-labib/godo/cmd"
 
 func main() {
 	cmd.Execute()

@@ -8,16 +8,11 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "mycobraapp",
-	Short: "A brief description of your application",
-	Long:  `A longer description of your application with more details.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		// Default action when no subcommands are provided
-		fmt.Println("Welcome to mycobraapp!")
-	},
+	Use:   "godo",
+	Short: "Yet Another Todo CLI",
+	Long:  "Yet Another Todo CLI built with Cobra",
 }
 
-// Execute adds all child commands to the root command and sets flags appropriately.
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
