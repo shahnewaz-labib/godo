@@ -21,7 +21,7 @@ type Task struct {
 	Task    string
 	Due     string
 	Created time.Time
-	Status  bool
+	Status  string
 }
 
 func readTasks() []Task {
@@ -60,12 +60,17 @@ func readTasks() []Task {
 
 	var tasks []Task
 	for i, record := range records[1:] {
+		parsedTime, err := time.Parse(time.RFC3339, record[3])
+		if err != nil {
+			panic(err)
+		}
+
 		task := Task{
 			id:      i + 1,
 			Task:    record[1],
 			Due:     record[2],
-			Created: time.Now(),
-			Status:  false,
+			Created: parsedTime,
+			Status:  "pending",
 		}
 		tasks = append(tasks, task)
 	}
@@ -113,7 +118,7 @@ func handleAddCmd(cmd *cobra.Command, args []string) {
 		Task:    args[0],
 		Due:     args[1],
 		Created: time.Now().Local(),
-		Status:  false,
+		Status:  "pending",
 	}
 	addTask(task)
 }
